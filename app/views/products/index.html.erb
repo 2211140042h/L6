@@ -1,0 +1,16 @@
+<% if flash[:notice] %>
+    <%= flash[:notice] %>
+<% end %>
+<br>
+<% @products.each do |e| %>
+商品<%= e.id %> （<%= e.name %>、<%= e.price %>）
+<%= link_to '削除', product_path(e), data: { turbo_method: :delete } %>
+<%= link_to "カート追加", new_cartitem_path(product_id: e.id) %>
+<br>
+<% end %>
+
+<br>
+<%= link_to "商品を追加する", new_product_path %><br>
+
+<%= link_to "カートを見る", cart_path(current_cart.id) %>
+
